@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_charlst.c                                   :+:      :+:    :+:   */
+/*   ft_getoffset.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:13:28 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/20 22:27:34 by cfu              ###   ########.fr       */
+/*   Created: 2017/01/24 21:23:38 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/25 00:29:47 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		ft_put_charlst(t_list *begin_list)
+int		*ft_getoffset(char *str)
 {
-	if (begin_list)
+	int	i;
+	int *arr;
+	int len;
+	int	count;
+
+	i = 0;
+	len = ft_strlen(str) - 1;
+	count = 0;
+	while (str[i++] == '.')
+		count++;
+	while (str[len--] == '.')
+		count++;
+	if (!(arr = (int *)ft_memalloc(sizeof(int) * count)))
+		return (NULL);
+	i = 0;
+	len = ft_strlen(str) - 1;
+	while (str[i] == '.')
 	{
-		while (begin_list)
-		{
-			ft_putstr(begin_list->content);
-			ft_putchar('\n');
-			begin_list = begin_list->next;
-		}
+		arr[i] = i;
+		i++;
 	}
+	while (str[len] == '.')
+		arr[i++] = len--;
+	return (arr);
 }

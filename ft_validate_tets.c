@@ -6,7 +6,7 @@
 /*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/17 19:49:29 by cfu              ###   ########.fr       */
+/*   Updated: 2017/01/23 17:05:33 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		ft_validate_tets(char *str)
 	while (v_tets[i])
 	{
 		if (ft_strequ(str, v_tets[i]) == 1)
-			return (1);
+			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }

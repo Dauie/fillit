@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*   ft_can_plc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/25 18:17:31 by rlutt            ###   ########.fr       */
+/*   Created: 2017/01/23 20:31:53 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/23 20:32:19 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_fillit(t_list *db)
+int		ft_canplc(char *brd, char *tet)
 {
+	int ret;
 	int spot;
-	char *brd;
-	
+	int len;
+	int i;
+
+	i = 0;
+	ret = 0;
 	spot = 0;
-	if (!(brd = ft_make_board(ft_getboardsz(ft_list_size(db)))))
-		return (-1);
-	ft_big_solver(brd, db, spot);
-	return (0);
+	len = ft_strlen(brd);
+	while (i < len)
+	{
+		if ((ret = ft_checkspot(brd, test, spot) == 1))
+			return (spot);
+		i++;
+	}
+	return (spot);
 }
+

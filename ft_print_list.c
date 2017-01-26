@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*   ft_print_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/25 18:17:31 by rlutt            ###   ########.fr       */
+/*   Created: 2017/01/18 21:37:48 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/18 22:14:34 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_fillit(t_list *db)
+void		ft_print_list(t_list *begin_list)
 {
-	int spot;
-	char *brd;
-	
-	spot = 0;
-	if (!(brd = ft_make_board(ft_getboardsz(ft_list_size(db)))))
-		return (-1);
-	ft_big_solver(brd, db, spot);
-	return (0);
+	if (begin_list)
+	{
+		while (begin_list)
+		{
+			ft_putstr(begin_list->content);
+			ft_putchar('\n');
+			begin_list = begin_list->next;
+		}
+	}
 }

@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*   ft_gettag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/25 18:17:31 by rlutt            ###   ########.fr       */
+/*   Created: 2017/01/25 18:38:02 by rlutt             #+#    #+#             */
+/*   Updated: 2017/01/25 18:38:05 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-
-int		ft_fillit(t_list *db)
+int			ft_gettag(char *str)
 {
-	int spot;
-	char *brd;
-	
-	spot = 0;
-	if (!(brd = ft_make_board(ft_getboardsz(ft_list_size(db)))))
-		return (-1);
-	ft_big_solver(brd, db, spot);
-	return (0);
+	int ret;
+
+	ret = 0;
+	while (*str != '.')
+		str++;
+	ret = *str;
+	return (ret);
 }

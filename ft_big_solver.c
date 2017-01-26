@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_charlst.c                                   :+:      :+:    :+:   */
+/*   ft_big_solver.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:13:28 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/20 22:27:34 by cfu              ###   ########.fr       */
+/*   Created: 2017/01/24 21:59:55 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/25 16:27:42 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		ft_put_charlst(t_list *begin_list)
+void		ft_big_solver(char *brd, t_list *tet, int spot)
 {
-	if (begin_list)
+	int		*chars;
+	int		off_set;
+	int		next;
+
+
+	chars = ft_getindx(tet->content);
+	off_set = ft_getoffset(tet->content);
+	next = spot + 1;
+	while (tet->content)
 	{
-		while (begin_list)
+		if (ft_solver(brd, chars, off_set, spot) == 1)
 		{
-			ft_putstr(begin_list->content);
-			ft_putchar('\n');
-			begin_list = begin_list->next;
+			if (tet->next)
+				tet = tet->next;
+			ft_big_solver(&brd[0], tet, spot);
 		}
+		else
+			ft_put_board(brd,ft_getboardsz(brd));
 	}
 }

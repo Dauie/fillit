@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fillit.c                                        :+:      :+:    :+:   */
+/*   ft_getboardsz.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/25 18:17:31 by rlutt            ###   ########.fr       */
+/*   Created: 2017/01/20 19:35:24 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/22 23:08:25 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_fillit(t_list *db)
+size_t		ft_getboardsz(int size)
 {
-	int spot;
-	char *brd;
-	
-	spot = 0;
-	if (!(brd = ft_make_board(ft_getboardsz(ft_list_size(db)))))
-		return (-1);
-	ft_big_solver(brd, db, spot);
-	return (0);
+	size_t i;
+
+	i = 0;
+	size = size * 4;
+	while ((i * i) < (size_t)size)
+		i++;
+	return (i);
 }

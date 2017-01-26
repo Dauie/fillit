@@ -1,26 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_charlst.c                                   :+:      :+:    :+:   */
+/*   ft_put_board.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/20 17:13:28 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/20 22:27:34 by cfu              ###   ########.fr       */
+/*   Created: 2017/01/20 17:44:17 by cfu               #+#    #+#             */
+/*   Updated: 2017/01/20 19:15:22 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		ft_put_charlst(t_list *begin_list)
+char		*ft_put_board(char *str, size_t size)
 {
-	if (begin_list)
+	char	*res;
+	int		s;
+	int		d;
+	size_t	counter;
+
+	res = ft_strnew(size * size + size + 1);
+	s = 0;
+	d = 0;
+	counter = size;
+	if (str)
 	{
-		while (begin_list)
+		while (str[s])
 		{
-			ft_putstr(begin_list->content);
-			ft_putchar('\n');
-			begin_list = begin_list->next;
+			counter = size;
+			while (counter > 0)
+			{
+				res[d++] = str[s++];
+				counter--;
+			}
+			res[d++] = '\n';
 		}
 	}
+	res[d] = '\0';
+	return (res);
 }
