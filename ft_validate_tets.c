@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate_tets.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cfu <marvin@42.fr>                         +#+  +:+       +#+        */
+/*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/23 17:05:33 by cfu              ###   ########.fr       */
+/*   Updated: 2017/01/27 22:05:55 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 int		ft_validate_tets(char *str)
 {
 	int i;
+	char *tmp;
 
 	i = 0;
+	tmp = ft_strdup(str);
+	tmp = ft_trim_tet(tmp);
 	while (v_tets[i])
 	{
-		if (ft_strequ(str, v_tets[i]) == 1)
+		if (ft_strequ(tmp, v_tets[i]) == 1)
 			return (i);
 		i++;
 	}
+	ft_strdel(&tmp);
 	return (-1);
 }
