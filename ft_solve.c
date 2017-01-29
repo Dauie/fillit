@@ -6,12 +6,12 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/28 03:44:15 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/28 22:09:04 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-static void ft_solve(char ***tets, char **brd, int maxtets, int ntets)
+static void ft_solve(char ***tets, char **brd, int tetn, int bwid)
 {
 	int	x;
 	int	y;
@@ -22,13 +22,12 @@ static void ft_solve(char ***tets, char **brd, int maxtets, int ntets)
 		x = -1;
 		while (++x < bwid)
 		{
-			if (ft_placetet(map, y, x, tets[tetn]))
+			if (ft_canplctet(brd, y, x, tets[tetn]))
 			{
-				if ((tetn + 1) != maxtets)
-					ft_solve(tets, map, maxtets, (tetn + 1));
+				if ((tetn + 1) != MAXTETN)
+					ft_solve(tets, brd, MAXTETN, (tetn + 1));
 				else
 					ft_putboard(brd);
-				ft_alldelete();
 			}
 		}
 	}
