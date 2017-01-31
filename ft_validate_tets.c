@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/28 13:27:03 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/30 18:49:13 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,50 @@ int		ft_validate_tets(char *str)
 	}
 	ft_strdel(&tmp);
 	return (-1);
+}
+
+
+void		ft_repchar(char *str, char o, char n, int max)
+{
+	int	i;
+
+	i = 0;
+	while (i <= max)
+	{
+		if ((i == 4 || i == 9 || i == 14 || i >= 19) && str[i] == o)
+			str[i] = n;
+		i++;
+	}
+	ft_trim_tet(str, '#');
+}
+
+char	*ft_trim_tet(char *str, char c)
+{
+	int 	src;
+	int 	dst;
+	int		end;
+	size_t	len;
+
+	src = 0;
+	dst = 0;
+	end = (int)(ft_strlen(str) - 1);
+	len = end;
+	while (str[src] != c)
+		src++;
+	if (src != dst)
+	{
+		while (str[src])
+		{
+			str[dst] = str[src];
+			if (str[src] == '#')
+				str[src] = '.';
+			dst++;
+			src++;
+		}
+	}
+	while (str[end] != c)
+		end--;
+	end++;
+	ft_memset(&str[end], '\0', len - end);
+	return (str);
 }
