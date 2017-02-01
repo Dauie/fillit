@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 15:06:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/01/31 20:53:44 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/31 21:51:43 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			ft_chkspot(char **brd, int y, int x)
 	return (0);
 }
 
-void		ft_plctet(char **brd, t_list *db)
+void		ft_plctet(char **brd, t_list *db, int x, int y)
 {
 	int 	i;
 	char	**tmp;
