@@ -6,13 +6,13 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/29 15:06:49 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/31 19:29:09 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void ft_solve(char ***tets, char **brd, int tetn, int bwid)
+int		 ft_solve(t_list *db, char **brd, int bwid)
 {
 	int	x;
 	int	y;
@@ -23,13 +23,17 @@ static void ft_solve(char ***tets, char **brd, int tetn, int bwid)
 		x = -1;
 		while (++x < bwid)
 		{
-			if (ft_didplctet(brd, y, x, tets[tetn]))
+			if (ft_didplctet(db, brd, y, x))
 			{
-				if ((tetn + 1) != MAXTETN)
-					ft_solve(tets, brd, MAXTETN, (tetn + 1));
+				if ((db->next != NULL))
+				{
+					db = db->next;
+					ft_solve(db, brd, bwid);
+				}
 				else
 					ft_putboard(brd);
 			}
 		}
 	}
+	return (0);
 }

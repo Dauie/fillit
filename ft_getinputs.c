@@ -7,17 +7,17 @@ t_list			*ft_getinputs(int fd)
 	char		*tet;
 	char		**ttmp;
 
-	db = ft_listnew(NULL, 0);
+	db = ft_lstnew(NULL, 0);
 	tmp = db;
-	db.rbyt = 21;
-	while (db.rbyt == 21)
+	db->rbyt = 21;
+	ttmp = NULL;
+	while (db->rbyt == 21)
 	{
-		tet = ft_gettet(fd, &db.rbyt);
+		tet = ft_gettet(fd, &db->rbyt);
 		if ((ft_validate_tets(tet)) != -1)
 		{
-			*ttmp = (char **)ft_memalloc(sizeof(char *) * 5);
-			*ttmp = ft_strsplit(tet, '\n');
-			tmp = ft_list_em(tet, tmp);
+			ttmp = ft_strsplit(tet, '\n');
+			tmp = ft_list_em(tmp, ttmp);
 			ft_strdel(&tet);
 			ft_strdel(ttmp);
 		}
@@ -34,23 +34,23 @@ char			*ft_gettet(int fd, size_t *rbyt)
 	return (tet);
 }
 
-t_list			*ft_list_em(char **tet, t_list *db)
+t_list			*ft_list_em(t_list *db, char **tet)
 {
 	static int	c;
 	int 		**crds;
 	t_list		*crntnd;
 
+	crntnd = NULL;
 	if (!c)
 		c = 0;
-	if (!(crds = ft_getcoords(tet))
+	if (!(crds = ft_getcoords(tet)))
 		return (NULL);
-	crntnd = NULL;
 	if (*crds)
-		crntnd = ft_lstnewstak(cords, ('A' + c++));
+		crntnd = ft_lstnewstak(crds, ('A' + c++));
 	if (db->content == NULL)
-		db>content = (void *)crds;
+		db->content = (void *)crds;
 	else
-		ft_lsteadd(&tlist, crntnd);
+		ft_lsteadd(&db, crntnd);
 	return (db);
 }
 
@@ -68,14 +68,17 @@ void 			ft_initbline(char *bline, size_t len)
 	}
 }
 
-int			**ft_getcoords(char **tet)
+int				**ft_getcoords(char **tet)
 {
-	int		**crds;
-	int		*s;
+	int			**crds;
+	int			*s;
 
+	crds = NULL;
 	if (!(s = ft_getstart(tet)))
 		return (NULL);
-	if (!(ft_getinxs(tet[s[0]][s[1]])))
+	tet += s[0];
+	*tet += s[1];
+	if (!(crds = ft_getinxs(tet)))
 		return (NULL);
 	return (crds);
 

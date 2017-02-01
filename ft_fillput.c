@@ -2,7 +2,7 @@
 
 #include "fillit.h"
 
-void ft_put_board(char **brd)
+void ft_putboard(char **brd)
 {
 	int		i;
 

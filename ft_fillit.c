@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/30 20:44:31 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/31 18:50:22 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			main(int ac, char **av)
 {
 	int 	fd;
-	t_list 	db;
+	t_list 	*db;
 	size_t	tamt;
 
 	fd = 0;
@@ -23,26 +23,30 @@ int			main(int ac, char **av)
 	if (ac > 1)
 	{
 		fd = open(av[1], O_RDONLY);
-		if (!(db = ft_get_inputs(fd))
-			return (-1); //error return
+		if (!(db = ft_getinputs(fd)))
+			return (-1);
 		tamt = ft_lstlen(db);
 		ft_fillit(db, tamt);
 	}
 	return (0);
 }
 
-int			ft_fillit(char ***tets, size_t tamt)
+int			ft_fillit(t_list *db, int tamt)
 {
 	char 	**brd;
+	int		bwid;
 
-	if (!(brd = ft_make_board(DEFBRDSZ));
-		return (-1); //ft_puterror
-	while (!(ft_solve(tets, brd, 0)) )
+	bwid = 2;
+	while (bwid * bwid < tamt * 4)
+		bwid++;
+	if (!(brd = ft_makeboard(bwid)))
+		return (-1);
+	while ((ft_solve(db, brd, bwid)) == 0)
+		brd = ft_makeboard(++bwid);
 	return (0);
 }
 
-
-char		**ft_make_board(size_t size)
+char		**ft_makeboard(size_t size)
 {
 	size_t		i;
 	char	**brd;

@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/01/30 19:03:18 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/01/31 18:48:20 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ int			*ft_gettopinxs(char **tet)
 {
 	int		x;
 	int		y;
-	int		*inxes
+	int		*inxes;
 
 	y = -1;
+	inxes = NULL;
 	while (++y < 4)
 	{
 		x = -1;
@@ -58,14 +59,14 @@ int			*ft_gettopinxs(char **tet)
 		}
 		x = 0;
 	}
-	return (res);
+	return (inxes);
 }
 
 int			*ft_getlefinxs(char **tet)
 {
 	int		x;
 	int		y;
-	int		*inxes
+	int		*inxes;
 
 	x = -1;
 	inxes = NULL;
@@ -95,7 +96,7 @@ int			*ft_getstart(char **tet)
 		return (NULL);
 	if (!(lfti = ft_getlefinxs(tet)))
 		return (NULL);
-	if (!(start = ft_newipair(top[0], lfti[1])))
+	if (!(start = ft_newipair(topi[0], lfti[1])))
 		return (NULL);
 	return (start);
 }
@@ -105,8 +106,12 @@ int		*ft_newipair(int y, int x)
 {
 	int		*res;
 
-	res = (int*)ft_memalloc(sizeof(int) * 2);
-	res[0] = y;
-	res[1] = x;
+	res = NULL;
+	if (y && x)
+	{
+		res = (int*)ft_memalloc(sizeof(int) * 2);
+		res[0] = y;
+		res[1] = x;
+	}
 	return (res);
 }
