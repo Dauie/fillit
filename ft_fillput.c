@@ -13,3 +13,9 @@ void ft_putboard(char **brd)
 		i++;
 	}
 }
+
+
+/*int		error(void)
+{
+	ft_putstr()
+}*/

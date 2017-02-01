@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/01/31 18:48:20 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/01 01:51:33 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int			**ft_getinxs(char **tet)
 	while (++y < 4)
 	{
 		x = -1;
-		while(++x < 4)
+		while((tet[y][x] == '#' || tet[y][x] == '.') && ++x < 4)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -57,7 +57,6 @@ int			*ft_gettopinxs(char **tet)
 				return (inxes);
 			}
 		}
-		x = 0;
 	}
 	return (inxes);
 }
@@ -81,7 +80,6 @@ int			*ft_getlefinxs(char **tet)
 				return (inxes);
 			}
 		}
-		y = 0;
 	}
 	return (inxes);
 }
@@ -107,11 +105,8 @@ int		*ft_newipair(int y, int x)
 	int		*res;
 
 	res = NULL;
-	if (y && x)
-	{
-		res = (int*)ft_memalloc(sizeof(int) * 2);
-		res[0] = y;
-		res[1] = x;
-	}
+	res = (int*)ft_memalloc(sizeof(int) * 2);
+	res[0] = y;
+	res[1] = x;
 	return (res);
 }

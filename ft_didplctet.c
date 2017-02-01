@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 15:06:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/01/31 22:39:01 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/01 00:53:41 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int			ft_canplctet(t_list *db, char **brd)
 	return (0);
 }
 
-int			ft_chkspot(char **brd, int x, int y)
+int			ft_chkspot(char **brd, int y, int x)
 {
 	if (brd[y][x] == '.')
 		return (1);

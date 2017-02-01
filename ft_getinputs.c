@@ -47,8 +47,8 @@ t_list			*ft_list_em(t_list *db, char **tet)
 		return (NULL);
 	if (*crds)
 		crntnd = ft_lstnewstak(crds, ('A' + c++));
-	if (db->content == NULL)
-		db->content = (void *)crds;
+	if (db->crds == NULL)
+		db->crds = crds;
 	else
 		ft_lsteadd(&db, crntnd);
 	return (db);
