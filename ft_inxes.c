@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/01 01:51:33 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/01 21:05:10 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			**ft_getinxs(char **tet)
 	tmp = (int **)ft_memalloc(sizeof(int *) * 4);
 	res = tmp;
 	y = -1;
-	while (++y < 4)
+	while (++y < 4 && *tet[y])
 	{
 		x = -1;
 		while((tet[y][x] == '#' || tet[y][x] == '.') && ++x < 4)
@@ -40,16 +40,20 @@ int			**ft_getinxs(char **tet)
 
 int			*ft_gettopinxs(char **tet)
 {
-	int		x;
 	int		y;
+	int		x;
+	int		ylen;
+	int		xlen;
 	int		*inxes;
 
 	y = -1;
 	inxes = NULL;
-	while (++y < 4)
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
+	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < 4)
+		while(++x < xlen)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -63,16 +67,20 @@ int			*ft_gettopinxs(char **tet)
 
 int			*ft_getlefinxs(char **tet)
 {
-	int		x;
 	int		y;
+	int		x;
+	int		ylen;
+	int		xlen;
 	int		*inxes;
-
+	
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
 	x = -1;
 	inxes = NULL;
-	while (++x < 4)
+	while (++x < xlen)
 	{
 		y = -1;
-		while(++y < 4)
+		while(++y < ylen)
 		{
 			if(tet[y][x] == '#')
 			{
