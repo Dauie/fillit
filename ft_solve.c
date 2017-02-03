@@ -6,32 +6,31 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/02 23:29:47 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/03 15:35:50 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_solve(t_list *db, char **brd, int bwid)
+int			ft_solve(t_list *db, char **brd)
 {
 	int		x;
 	int		y;
-	int		ym;
-	int		xm;
+	int		*mx;
 
+	mx = ft_max(db);
 	y = -1;
-	ym = db->crds[4][]
-	while (++y < bwid - 1)
+	while (++y <= mx[0])
 	{
 		x = -1;
-		while (++x <= bwid)
+		while (++x <= mx[1])
 		{
 			if (ft_didplctet(db, brd, y, x))
 			{
 				if ((db->next != NULL))
 				{
 					db = db->next;
-					if (!ft_solve(db, brd, bwid))
+					if (!ft_solve(db, brd))
 						ft_unplace(db, brd);
 				}
 				else
@@ -61,15 +60,28 @@ void		ft_unplace(t_list *db, char **brd)
 	}
 }
 
-int		*ft_max(t_list *db, int x, int y)
+int			*ft_max(t_list *db)
 {
-	int smx;
-	int smy;
+	int		i;
+	int		xmx;
+	int		ymx;
+	int		*res;
 
-	smy = db->crds[0][0] +  db->crds[1][0] + db->crds[2][0] + db->crds[3][0];
-	smx = db->crds[0][1] +  db->crds[1][1] + db->crds[2][1] + db->crds[3][1];
-	smy += smx;
-	return (ft_sqrt(smy));
+	i = -1;
+	ymx = 0;
+	while (++i < 4)
+	{
+		if (db->crds[i][0] > ymx)
+			ymx = db->crds[i][0];
+	}
+	i = -1;
+	while (++i < 4)
+	{
+		if (db->crds[i][1] > xmx)
+			xmx = db->crds[i][1];
+	}
+	res = ft_newipair(ymx, xmx);
+	return (res);
 }
 
 int		ft_sqrt(int nb)

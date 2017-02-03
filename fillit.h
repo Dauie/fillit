@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:12:23 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/02 19:17:37 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/03 15:36:07 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int				*ft_getstart(char **tet);
 int				*ft_newipair(int y, int x);
 t_list			*ft_list_em(t_list *db, char **tet);
 void 			ft_initbline(char *bline, size_t len);
-int		 		ft_solve(t_list *db, char **brd, int bwid);
+int		 		ft_solve(t_list *db, char **brd);
 int		 		ft_didplctet(t_list *db, char **brd, int y, int x);
 int				ft_canplctet(t_list *db, char **brd, int y, int x);
 int				ft_chkspot(char **brd, int x, int y);
 void			ft_plctet(t_list *db, char **brd, int y, int x);
 void 			ft_putboard(char **brd);
 void			ft_unplace(t_list *db, char **brd);
+int				ft_sqrt(int nb);
+int				*ft_max(t_list *db);
 #endif
