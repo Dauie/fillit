@@ -6,31 +6,36 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/01 21:05:10 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/02 13:50:24 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			**ft_getinxs(char **tet)
+int			**ft_getinxs(char **tet, int x, int y)
 {
 	int		**res;
 	int		**tmp;
-	int		x;
-	int		y;
-
+	int		ylen;
+	int		xlen;
+	int		tmpcnt;
+	
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
 	tmp = (int **)ft_memalloc(sizeof(int *) * 4);
 	res = tmp;
 	y = -1;
-	while (++y < 4 && *tet[y])
+	tmpcnt = 0;
+	while (++y < ylen)
 	{
 		x = -1;
-		while((tet[y][x] == '#' || tet[y][x] == '.') && ++x < 4)
+		while(++x < xlen)
 		{
 			if(tet[y][x] == '#')
 			{
 				*tmp = ft_newipair(y, x);
 				tmp++;
+				tmpcnt++;
 			}
 		}
 		x = 0;

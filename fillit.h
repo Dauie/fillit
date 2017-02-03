@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:12:23 by cfu               #+#    #+#             */
-/*   Updated: 2017/01/31 22:36:19 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/02 14:33:43 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void			ft_repchar(char *str, char o, char n, int max);
 char			*ft_trim_tet(char *str, char c);
 int				ft_validate_tets(char *str);
 int				**ft_getcoords(char **tet);
-int				**ft_getinxs(char **tet);
+int				**ft_getinxs(char **tet, int x, int y);
 int				*ft_gettopinxs(char **tet);
 int				*ft_getlefinxs(char **tet);
 int				*ft_getstart(char **tet);
@@ -47,8 +47,8 @@ t_list			*ft_list_em(t_list *db, char **tet);
 void 			ft_initbline(char *bline, size_t len);
 int		 		ft_solve(t_list *db, char **brd, int bwid);
 int		 		ft_didplctet(t_list *db, char **brd, int y, int x);
-int				ft_canplctet(t_list *db, char **brd);
+int				ft_canplctet(t_list *db, char **brd, int y, int x);
 int				ft_chkspot(char **brd, int x, int y);
-void			ft_plctet(t_list *db, char **brd);
+void			ft_plctet(t_list *db, char **brd, int y, int x);
 void 			ft_putboard(char **brd);
 #endif

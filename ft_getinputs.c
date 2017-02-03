@@ -45,8 +45,7 @@ t_list			*ft_list_em(t_list *db, char **tet)
 		c = 0;
 	if (!(crds = ft_getcoords(tet)))
 		return (NULL);
-	if (*crds)
-		crntnd = ft_lstnewstak(crds, ('A' + c++));
+	crntnd = ft_lstnewstak(crds, ('A' + c++));
 	if (db->crds == NULL)
 		db->crds = crds;
 	else
@@ -78,7 +77,7 @@ int				**ft_getcoords(char **tet)
 		return (NULL);
 	tet += s[0];
 	*tet += s[1];
-	if (!(crds = ft_getinxs(tet)))
+	if (!(crds = ft_getinxs(tet, 0, 0)))
 		return (NULL);
 	return (crds);
 
