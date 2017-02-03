@@ -6,39 +6,35 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/02 13:50:24 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/02 22:01:21 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			**ft_getinxs(char **tet, int x, int y)
+int			**ft_getinxs(char **tet, int y, int x)
 {
 	int		**res;
 	int		**tmp;
 	int		ylen;
 	int		xlen;
-	int		tmpcnt;
 	
 	ylen = ft_tbllen(tet);
 	xlen = ft_strlen(*tet);
 	tmp = (int **)ft_memalloc(sizeof(int *) * 4);
 	res = tmp;
 	y = -1;
-	tmpcnt = 0;
 	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < xlen)
+		while(++x <= xlen)
 		{
 			if(tet[y][x] == '#')
 			{
 				*tmp = ft_newipair(y, x);
 				tmp++;
-				tmpcnt++;
 			}
 		}
-		x = 0;
 	}
 	return (res);
 }
@@ -107,7 +103,7 @@ int			*ft_getstart(char **tet)
 		return (NULL);
 	if (!(lfti = ft_getlefinxs(tet)))
 		return (NULL);
-	if (!(start = ft_newipair(topi[0], lfti[1])))
+	if (!(start = ft_newipair(topi[1], lfti[0])))
 		return (NULL);
 	return (start);
 }

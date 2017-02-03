@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 15:06:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/02 14:33:45 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/02 22:30:27 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,13 @@ int			ft_canplctet(t_list *db, char **brd, int y, int x)
 {
 	int		i;
 	int		res;
-	char	**tmp;
 
 	i = -1;
 	res = 0;
-	tmp = brd;
-	tmp += y;
-	*tmp += x;
-	while (++i < 4)
+	while (++i <= 3)
 	{
-		if (ft_chkspot(tmp, db->crds[i][0], db->crds[i][1]))
+		if (ft_chkspot(brd, db->crds[i][0] + y, db->crds[i][1] + x))
 			res++;
-		i++;
 	}
 	if (res == 4)
 		return (1);
@@ -54,15 +49,9 @@ int			ft_chkspot(char **brd, int y, int x)
 void		ft_plctet(t_list *db, char **brd, int y, int x)
 {
 	int 	i;
-	char	**tmp;
 
 	i = -1;
-	tmp = brd;
-	tmp += y;
-	*tmp += x;
-	while (++i < 4)
-	{
-		tmp[db->crds[i][0]][db->crds[i][1]] = (char)db->content_size;
-		i++;
-	}
+	while (++i <= 3)
+		brd[db->crds[i][0] + y] [db->crds[i][1] + x] = (char)db->content_size;
+
 }

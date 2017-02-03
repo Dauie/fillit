@@ -75,9 +75,7 @@ int				**ft_getcoords(char **tet)
 	crds = NULL;
 	if (!(s = ft_getstart(tet)))
 		return (NULL);
-	tet += s[0];
-	*tet += s[1];
-	if (!(crds = ft_getinxs(tet, 0, 0)))
+	if (!(crds = ft_getinxs(tet, s[0], s[1])))
 		return (NULL);
 	return (crds);
 
