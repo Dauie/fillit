@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+         #
+#    By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 00:10:09 by cfu               #+#    #+#              #
-#    Updated: 2017/02/01 00:24:13 by cfu              ###   ########.fr        #
+#    Updated: 2017/02/03 19:03:02 by rlutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
 SRC = $(LIBFT)libft.a ft_didplctet.c ft_fillit.c ft_fillput.c ft_getinputs.c \
-	  ft_inxes.c ft_solve.c ft_validate_tets.c
+	  ft_inxes.c ft_solve.c ft_validate_tets.c ft_lstcrdsnew.c
 
 OBJS = $(SRC: .c=.o)
 

@@ -109,6 +109,31 @@ int			*ft_getstart(char **tet)
 	return (start);
 }
 
+int			*ft_max(t_list *db)
+{
+	int		i;
+	int		xmx;
+	int		ymx;
+	int		*res;
+
+	i = -1;
+	ymx = 0;
+	xmx = 0;
+	while (++i < 4)
+	{
+		if (db->crds[i][0] > ymx)
+			ymx = db->crds[i][0];
+	}
+	i = -1;
+	while (++i < 4)
+	{
+		if (db->crds[i][1] > xmx)
+			xmx = db->crds[i][1];
+	}
+	res = ft_newipair(ymx, xmx);
+	return (res);
+}
+
 
 int		*ft_newipair(int y, int x)
 {
@@ -128,7 +153,8 @@ int		main(void)
 	int	*res;
 	char **ttet;
 	char *tet = "....\n....\n...#\n.###\n\n";
-
+	t_list	*db;
+	db = (t_list *)ft_memalloc(sizeof(t_list));
 	i = -1;
 	ttet = ft_strsplit(tet, '\n');
 	res = ft_getstart(ttet);
@@ -136,6 +162,7 @@ int		main(void)
 	ft_putnbr(res[1]);
 	ft_putchar('\n');
 	crds = ft_getinxs(ttet, res[0], res[1]);
+	db->crds = crds;
 	while (++i < 4)
 	{
 		ft_putstr("Mino:");
@@ -145,4 +172,8 @@ int		main(void)
 		ft_putnbr(crds[i][1]);
 		ft_putchar('\n');
 	}
+	res = ft_max(db);
+	ft_putnbr(res[0]);
+	ft_putnbr(res[1]);
+	ft_putchar('\n');
 }

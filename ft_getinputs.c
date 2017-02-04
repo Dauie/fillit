@@ -6,6 +6,7 @@ t_list			*ft_getinputs(int fd)
 	t_list		*tmp;
 	char		*tet;
 	char		**ttmp;
+	int			linum;
 
 	db = ft_lstnew(NULL, 0);
 	tmp = db;
@@ -14,14 +15,15 @@ t_list			*ft_getinputs(int fd)
 	while (db->rbyt == 21)
 	{
 		tet = ft_gettet(fd, &db->rbyt);
-		if ((ft_validate_tets(tet)) != -1)
+		if ((linum = ft_validate_tets(tet)) != -1)
 		{
-			ttmp = ft_strsplit(tet, '\n');
+			ttmp = ft_strsplit(input_tets[linum], '\n');
 			tmp = ft_list_em(tmp, ttmp);
-			ft_strdel(&tet);
-			ft_strdel(ttmp);
 		}
+		ft_strclr(tet);
 	}
+	ft_strdel(&tet);
+	ft_strdel(ttmp);
 	return (db);
 }
 
@@ -45,7 +47,7 @@ t_list			*ft_list_em(t_list *db, char **tet)
 		c = 0;
 	if (!(crds = ft_getcoords(tet)))
 		return (NULL);
-	crntnd = ft_lstnewstak(crds, ('A' + c++));
+	crntnd = ft_lstcrdsnew(crds, (sizeof(int) * 8), ('A' + c++));
 	if (db->crds == NULL)
 		db->crds = crds;
 	else

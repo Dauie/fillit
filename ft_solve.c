@@ -6,13 +6,13 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/03 15:35:50 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/03 22:51:48 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_solve(t_list *db, char **brd)
+int			ft_solve(t_list *db, char **brd, int bwid)
 {
 	int		x;
 	int		y;
@@ -20,21 +20,20 @@ int			ft_solve(t_list *db, char **brd)
 
 	mx = ft_max(db);
 	y = -1;
-	while (++y <= mx[0])
+	while (++y <= bwid - mx[0])
 	{
 		x = -1;
-		while (++x <= mx[1])
+		while (++x <= bwid - mx[1])
 		{
 			if (ft_didplctet(db, brd, y, x))
 			{
 				if ((db->next != NULL))
 				{
 					db = db->next;
-					if (!ft_solve(db, brd))
-						ft_unplace(db, brd);
+					ft_solve(db, brd, bwid);
 				}
 				else
-					return (1);
+					return (0);
 			}
 		}
 	}
@@ -69,6 +68,7 @@ int			*ft_max(t_list *db)
 
 	i = -1;
 	ymx = 0;
+	xmx = 0;
 	while (++i < 4)
 	{
 		if (db->crds[i][0] > ymx)

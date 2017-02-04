@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/03 16:54:18 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/03 16:59:53 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,9 @@ int			*ft_getstart(char **tet)
 
 	if (!(topi = ft_gettopinxs(tet)))
 		return (NULL);
-	ft_putnbr(topi[0]);
-	ft_putnbr(topi[1]);
 	ft_putchar('\n');
 	if (!(lfti = ft_getlefinxs(tet)))
 		return (NULL);
-	ft_putnbr(lfti[0]);
-	ft_putnbr(lfti[1]);
 	ft_putchar('\n');
 	if (!(start = ft_newipair(topi[0], lfti[1])))
 		return (NULL);

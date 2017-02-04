@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/03 14:55:44 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/03 19:25:56 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_fillit(t_list *db, int tamt)
 		bwid++;
 	if (!(brd = ft_makeboard(bwid)))
 		return (-1);
-	while ((ft_solve(db, brd)) == 0)
+	while ((ft_solve(db, brd, bwid)) == 0)
 		brd = ft_makeboard(++bwid);
 	return (0);
 }
