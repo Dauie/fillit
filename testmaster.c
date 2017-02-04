@@ -1,16 +1,11 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_inxes.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/03 16:54:18 by rlutt            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft/libft.h"
+
+int			*ft_newipair(int y, int x);
+int			*ft_gettopinxs(char **tet);
+int			**ft_getinxs(char **tet, int y, int x);
+int			*ft_getlefinxs(char **tet);
+int			*ft_getstart(char **tet);
 
 int			**ft_getinxs(char **tet, int y, int x)
 {
@@ -124,4 +119,30 @@ int		*ft_newipair(int y, int x)
 	res[0] = y;
 	res[1] = x;
 	return (res);
+}
+
+int		main(void)
+{
+	int i;
+	int	**crds;
+	int	*res;
+	char **ttet;
+	char *tet = "....\n....\n...#\n.###\n\n";
+
+	i = -1;
+	ttet = ft_strsplit(tet, '\n');
+	res = ft_getstart(ttet);
+	ft_putnbr(res[0]);
+	ft_putnbr(res[1]);
+	ft_putchar('\n');
+	crds = ft_getinxs(ttet, res[0], res[1]);
+	while (++i < 4)
+	{
+		ft_putstr("Mino:");
+		ft_putnbr(i);
+		ft_putchar('\n');
+		ft_putnbr(crds[i][0]);
+		ft_putnbr(crds[i][1]);
+		ft_putchar('\n');
+	}
 }
