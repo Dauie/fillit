@@ -49,7 +49,10 @@ t_list			*ft_list_em(t_list *db, char **tet)
 		return (NULL);
 	crntnd = ft_lstcrdsnew(crds, (sizeof(int) * 8), ('A' + c++));
 	if (db->crds == NULL)
-		db->crds = crds;
+	{
+		db->crds = ft_crddup(crds);
+		db->content_size = 'A';
+	}
 	else
 		ft_lsteadd(&db, crntnd);
 	return (db);
@@ -63,10 +66,7 @@ void 			ft_initbline(char *bline, size_t len)
 	tmp = bline;
 	i = -1;
 	while (++i < len)
-	{
-		*tmp = '.';
-		tmp++;
-	}
+		tmp[i] = '.';
 }
 
 int				**ft_getcoords(char **tet)
@@ -80,5 +80,23 @@ int				**ft_getcoords(char **tet)
 	if (!(crds = ft_getinxs(tet, s[0], s[1])))
 		return (NULL);
 	return (crds);
+}
 
+void	*ft_crddup(int **crds)
+{
+	int		i;
+	int		**res;
+	int		**tmp;
+
+	i = -1;
+	tmp = (int **)ft_memalloc(sizeof(int*) * ft_itbllen(crds));
+	res = tmp;
+	while (++i < 4)
+	{
+		*tmp = ft_memalloc(sizeof(int) * 2);
+		ft_memcpy(*tmp, *crds, sizeof(int) * 2);
+		tmp++;
+		crds++;
+	}
+	return (res);
 }

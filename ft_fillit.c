@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/03 19:25:56 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 15:41:08 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			main(int ac, char **av)
 		if (!(db = ft_getinputs(fd)))
 			return (-1);
 		tamt = ft_lstlen(db);
+		ft_puttetlist(db);
 		ft_fillit(db, tamt);
 	}
 	return (0);
@@ -53,13 +54,43 @@ char		**ft_makeboard(size_t size)
 	char	**tmp;
 
 	i = -1;
-	tmp = (char **)ft_memalloc(sizeof(char *) * (size + 1));
+	tmp = (char **)ft_memalloc(sizeof(char *) * size);
 	brd = tmp;
 	while (++i < size)
 	{
-		*tmp = (char *)ft_memalloc(sizeof(char) * size);
+		*tmp = (char *)ft_strnew(sizeof(char) * size);
 		ft_initbline(*tmp, size);
 		tmp++;
 	}
 	return (brd);
+}
+
+void 	ft_puttetlist(t_list *db)
+{
+	t_list	*tmp;
+	int		x;
+	int		len;
+	int		i;
+
+
+	x = -1;
+	tmp = db;
+	len = ft_lstlen(tmp);
+	while (++x < len)
+	{
+		ft_putstr("Tet:#");
+		ft_putnbr(x);
+		ft_putchar('\n');
+		i = -1;
+		while (++i < 4)
+		{
+			ft_putstr("mino");
+			ft_putnbr(i);
+			ft_putchar(':');
+			ft_putnbr(tmp->crds[i][0]);
+			ft_putnbr(tmp->crds[i][1]);
+			ft_putchar('\n');
+		}
+	 	tmp = tmp->next;
+	}
 }

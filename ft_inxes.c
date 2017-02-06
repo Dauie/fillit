@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/03 16:59:53 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 12:44:00 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			**ft_getinxs(char **tet, int y, int x)
 	while (++y < ylen)
 	{
 		x = -1;
-		while(++x <= xlen)
+		while(++x < xlen)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -101,10 +101,8 @@ int			*ft_getstart(char **tet)
 
 	if (!(topi = ft_gettopinxs(tet)))
 		return (NULL);
-	ft_putchar('\n');
 	if (!(lfti = ft_getlefinxs(tet)))
 		return (NULL);
-	ft_putchar('\n');
 	if (!(start = ft_newipair(topi[0], lfti[1])))
 		return (NULL);
 	return (start);

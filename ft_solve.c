@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/03 22:51:48 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 15:40:01 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,25 @@ int			ft_solve(t_list *db, char **brd, int bwid)
 
 	mx = ft_max(db);
 	y = -1;
-	while (++y <= bwid - mx[0])
+	ft_putboard(brd, bwid);
+	while (++y < bwid - mx[0])
 	{
 		x = -1;
-		while (++x <= bwid - mx[1])
+		while (++x < bwid - mx[1])
 		{
 			if (ft_didplctet(db, brd, y, x))
 			{
 				if ((db->next != NULL))
 				{
+					ft_putboard(brd, bwid);
 					db = db->next;
 					ft_solve(db, brd, bwid);
 				}
 				else
-					return (0);
+				{
+					ft_putboard(brd, bwid);
+					return (1);
+				}
 			}
 		}
 	}
@@ -82,21 +87,4 @@ int			*ft_max(t_list *db)
 	}
 	res = ft_newipair(ymx, xmx);
 	return (res);
-}
-
-int		ft_sqrt(int nb)
-{
-	int	x;
-	int sq;
-
-	x = 1;
-	sq = 0;
-	while (x <= nb / 2)
-	{
-		sq = x * x;
-		if (sq == nb)
-			return (x);
-		x += 1;
-	}
-	return (0);
 }
