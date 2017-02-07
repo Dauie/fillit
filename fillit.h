@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:12:23 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/06 14:27:27 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 17:06:15 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				ft_canplctet(t_list *db, char **brd, int y, int x);
 int				ft_chkspot(char **brd, int x, int y);
 void			ft_plctet(t_list *db, char **brd, int y, int x);
 void 			ft_putboard(char **brd, int bwid);
-void			ft_unplace(t_list *db, char **brd);
+void			ft_unplace(char c, char **brd, int bwid);
 int				ft_sqrt(int nb);
 int				*ft_max(t_list *db);
 t_list			*ft_lstcrdsnew(void const *content, size_t content_size, int c);

@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/06 15:40:01 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 17:09:21 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int			ft_solve(t_list *db, char **brd, int bwid)
 
 	mx = ft_max(db);
 	y = -1;
-	ft_putboard(brd, bwid);
+	if (db->next == NULL)
+		return (1);
 	while (++y < bwid - mx[0])
 	{
 		x = -1;
@@ -28,38 +29,29 @@ int			ft_solve(t_list *db, char **brd, int bwid)
 		{
 			if (ft_didplctet(db, brd, y, x))
 			{
-				if ((db->next != NULL))
-				{
-					ft_putboard(brd, bwid);
-					db = db->next;
-					ft_solve(db, brd, bwid);
-				}
+				if	(!ft_solve(db, brd, bwid))
+					ft_unplace((char)db->content_size, brd, bwid);
 				else
-				{
-					ft_putboard(brd, bwid);
 					return (1);
-				}
 			}
 		}
 	}
 	return (0);
 }
 
-void		ft_unplace(t_list *db, char **brd)
+void		ft_unplace(char c, char **brd, int bwid)
 {
 	int		y;
 	int		x;
-	char	**tmp;
 
-	tmp = brd;
 	y = -1;
-	while(tmp[++y])
+	while(++y < bwid)
 	{
 		x = -1;
-		while(tmp[y][++x])
+		while(++x < bwid)
 		{
-			if (tmp[y][x] == (char)db->content_size)
-				tmp[y][x] = '.';
+			if (brd[y][x] == c)
+				brd[y][x] = '.';
 		}
 	}
 }
