@@ -17,8 +17,7 @@ t_list			*ft_getinputs(int fd)
 		tet = ft_gettet(fd, &db->rbyt);
 		if ((linum = ft_validate_tets(tet)) != -1)
 		{
-			ttmp = ft_strsplit(input_tets[linum], '\n');
-			tmp = ft_list_em(tmp, ttmp);
+			tmp = ft_list_em(linum, ttmp);
 		}
 		ft_strclr(tet);
 	}
@@ -45,8 +44,7 @@ t_list			*ft_list_em(t_list *db, char **tet)
 	crntnd = NULL;
 	if (!c)
 		c = 0;
-	if (!(crds = ft_getcoords(tet)))
-		return (NULL);
+	if (!(crds = ft_getcoords(linum)
 	crntnd = ft_lstcrdsnew(crds, (sizeof(int) * 8), ('A' + c++));
 	if (db->crds == NULL)
 	{
@@ -69,17 +67,22 @@ void 			ft_initbline(char *bline, size_t len)
 		tmp[i] = '.';
 }
 
-int				**ft_getcoords(char **tet)
+int				**ft_getcoords(int linum)
 {
+	int			xy;
+	int			**res;
 	int			**crds;
-	int			*s;
 
-	crds = NULL;
-	if (!(s = ft_getstart(tet)))
-		return (NULL);
-	if (!(crds = ft_getinxs(tet, s[0], s[1])))
-		return (NULL);
-	return (crds);
+
+	crds = ft_memalloc(sizeof(int *) * 4)
+	res = crds;
+	ln = -1;
+	while (++xy < 4)
+	{
+		*crds = ft_newipair(cy[lium][xy], cx[linum][xy])
+		crds++;
+	}
+	return (res);
 }
 
 void	*ft_crddup(int **crds)
