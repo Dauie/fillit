@@ -6,26 +6,28 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/01/31 18:48:20 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/06 12:44:00 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			**ft_getinxs(char **tet)
+int			**ft_getinxs(char **tet, int y, int x)
 {
 	int		**res;
 	int		**tmp;
-	int		x;
-	int		y;
+	int		ylen;
+	int		xlen;
 
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
 	tmp = (int **)ft_memalloc(sizeof(int *) * 4);
 	res = tmp;
 	y = -1;
-	while (++y < 4)
+	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < 4)
+		while(++x < xlen)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -33,23 +35,26 @@ int			**ft_getinxs(char **tet)
 				tmp++;
 			}
 		}
-		x = 0;
 	}
 	return (res);
 }
 
 int			*ft_gettopinxs(char **tet)
 {
-	int		x;
 	int		y;
+	int		x;
+	int		ylen;
+	int		xlen;
 	int		*inxes;
 
 	y = -1;
 	inxes = NULL;
-	while (++y < 4)
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
+	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < 4)
+		while(++x < xlen)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -57,23 +62,26 @@ int			*ft_gettopinxs(char **tet)
 				return (inxes);
 			}
 		}
-		x = 0;
 	}
 	return (inxes);
 }
 
 int			*ft_getlefinxs(char **tet)
 {
-	int		x;
 	int		y;
+	int		x;
+	int		ylen;
+	int		xlen;
 	int		*inxes;
 
+	ylen = ft_tbllen(tet);
+	xlen = ft_strlen(*tet);
 	x = -1;
 	inxes = NULL;
-	while (++x < 4)
+	while (++x < xlen)
 	{
 		y = -1;
-		while(++y < 4)
+		while(++y < ylen)
 		{
 			if(tet[y][x] == '#')
 			{
@@ -81,7 +89,6 @@ int			*ft_getlefinxs(char **tet)
 				return (inxes);
 			}
 		}
-		y = 0;
 	}
 	return (inxes);
 }
@@ -107,11 +114,8 @@ int		*ft_newipair(int y, int x)
 	int		*res;
 
 	res = NULL;
-	if (y && x)
-	{
-		res = (int*)ft_memalloc(sizeof(int) * 2);
-		res[0] = y;
-		res[1] = x;
-	}
+	res = (int*)ft_memalloc(sizeof(int) * 2);
+	res[0] = y;
+	res[1] = x;
 	return (res);
 }

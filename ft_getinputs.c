@@ -6,6 +6,7 @@ t_list			*ft_getinputs(int fd)
 	t_list		*tmp;
 	char		*tet;
 	char		**ttmp;
+	int			linum;
 
 	db = ft_lstnew(NULL, 0);
 	tmp = db;
@@ -14,14 +15,14 @@ t_list			*ft_getinputs(int fd)
 	while (db->rbyt == 21)
 	{
 		tet = ft_gettet(fd, &db->rbyt);
-		if ((ft_validate_tets(tet)) != -1)
+		if ((linum = ft_validate_tets(tet)) != -1)
 		{
-			ttmp = ft_strsplit(tet, '\n');
-			tmp = ft_list_em(tmp, ttmp);
-			ft_strdel(&tet);
-			ft_strdel(ttmp);
+			db = ft_list_em(tmp, linum);
 		}
+		ft_strclr(tet);
 	}
+	ft_strdel(&tet);
+	ft_strdel(ttmp);
 	return (db);
 }
 
@@ -34,7 +35,7 @@ char			*ft_gettet(int fd, size_t *rbyt)
 	return (tet);
 }
 
-t_list			*ft_list_em(t_list *db, char **tet)
+t_list			*ft_list_em(t_list *db, int linum)
 {
 	static int	c;
 	int 		**crds;
@@ -43,12 +44,13 @@ t_list			*ft_list_em(t_list *db, char **tet)
 	crntnd = NULL;
 	if (!c)
 		c = 0;
-	if (!(crds = ft_getcoords(tet)))
-		return (NULL);
-	if (*crds)
-		crntnd = ft_lstnewstak(crds, ('A' + c++));
-	if (db->content == NULL)
-		db->content = (void *)crds;
+	crds = ft_getcoords(linum);
+	crntnd = ft_lstcrdsnew(crds, ('A' + c++));
+	if (db->crds == NULL)
+	{
+		db->crds = ft_crddup(crds);
+		db->content_size = 'A';
+	}
 	else
 		ft_lsteadd(&db, crntnd);
 	return (db);
@@ -62,24 +64,42 @@ void 			ft_initbline(char *bline, size_t len)
 	tmp = bline;
 	i = -1;
 	while (++i < len)
-	{
-		*tmp = '.';
-		tmp++;
-	}
+		tmp[i] = '.';
 }
 
-int				**ft_getcoords(char **tet)
+int				**ft_getcoords(int linum)
 {
+	int			xy;
+	int			**res;
 	int			**crds;
-	int			*s;
 
-	crds = NULL;
-	if (!(s = ft_getstart(tet)))
-		return (NULL);
-	tet += s[0];
-	*tet += s[1];
-	if (!(crds = ft_getinxs(tet)))
-		return (NULL);
-	return (crds);
 
+	crds = ft_memalloc(sizeof(int *) * 4);
+	res = crds;
+	xy = -1;
+	while (++xy < 4)
+	{
+		*crds = ft_newipair(cy[linum][xy], cx[linum][xy]);
+		crds++;
+	}
+	return (res);
+}
+
+void	*ft_crddup(int **crds)
+{
+	int		i;
+	int		**res;
+	int		**tmp;
+
+	i = -1;
+	tmp = (int **)ft_memalloc(sizeof(int*) * ft_itbllen(crds));
+	res = tmp;
+	while (++i < 4)
+	{
+		*tmp = ft_memalloc(sizeof(int) * 2);
+		ft_memcpy(*tmp, *crds, sizeof(int) * 2);
+		tmp++;
+		crds++;
+	}
+	return (res);
 }
