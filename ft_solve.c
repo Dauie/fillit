@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/07 14:58:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/08 17:02:00 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,10 @@ int			ft_solve(t_list *db, char **brd, int bwid)
 			{
 				if (db->next == NULL)
 					return(1);
-				if (db->next != NULL)
-					db = db->next;
-				if	(ft_solve(db, brd, bwid))
+				if	(ft_solve(db->next, brd, bwid))
 						return(1);
 				else
-				{
 					ft_unplace((char)db->content_size, brd, bwid);
-					return (0);
-				}
 			}
 		}
 	}
