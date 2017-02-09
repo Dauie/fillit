@@ -6,7 +6,7 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 03:01:07 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/06 12:44:00 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/08 17:52:35 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int			**ft_getinxs(char **tet, int y, int x)
 	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < xlen)
+		while (++x < xlen)
 		{
-			if(tet[y][x] == '#')
+			if (tet[y][x] == '#')
 			{
 				*tmp = ft_newipair(y, x);
 				tmp++;
@@ -54,9 +54,9 @@ int			*ft_gettopinxs(char **tet)
 	while (++y < ylen)
 	{
 		x = -1;
-		while(++x < xlen)
+		while (++x < xlen)
 		{
-			if(tet[y][x] == '#')
+			if (tet[y][x] == '#')
 			{
 				inxes = ft_newipair(y, x);
 				return (inxes);
@@ -81,9 +81,9 @@ int			*ft_getlefinxs(char **tet)
 	while (++x < xlen)
 	{
 		y = -1;
-		while(++y < ylen)
+		while (++y < ylen)
 		{
-			if(tet[y][x] == '#')
+			if (tet[y][x] == '#')
 			{
 				inxes = ft_newipair(y, x);
 				return (inxes);
@@ -108,8 +108,7 @@ int			*ft_getstart(char **tet)
 	return (start);
 }
 
-
-int		*ft_newipair(int y, int x)
+int			*ft_newipair(int y, int x)
 {
 	int		*res;
 

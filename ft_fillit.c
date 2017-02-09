@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/06 21:16:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/09 15:27:44 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int			main(int ac, char **av)
 {
-	int 	fd;
-	t_list 	*db;
+	int		fd;
+	t_list	*db;
 	size_t	tamt;
 
 	fd = 0;
@@ -24,9 +24,8 @@ int			main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (!(db = ft_getinputs(fd)))
-			return (-1);
+			return (error(1));
 		tamt = ft_lstlen(db);
-		ft_puttetlist(db);
 		ft_fillit(db, tamt);
 	}
 	return (0);
@@ -34,7 +33,7 @@ int			main(int ac, char **av)
 
 int			ft_fillit(t_list *db, int tamt)
 {
-	char 	**brd;
+	char	**brd;
 	int		bwid;
 
 	bwid = 2;
@@ -51,8 +50,8 @@ int			ft_fillit(t_list *db, int tamt)
 char		**ft_makeboard(size_t size)
 {
 	size_t		i;
-	char	**brd;
-	char	**tmp;
+	char		**brd;
+	char		**tmp;
 
 	i = -1;
 	tmp = (char **)ft_memalloc(sizeof(char *) * size);
@@ -64,34 +63,4 @@ char		**ft_makeboard(size_t size)
 		tmp++;
 	}
 	return (brd);
-}
-
-void 	ft_puttetlist(t_list *db)
-{
-	t_list	*tmp;
-	int		x;
-	int		len;
-	int		i;
-
-
-	x = -1;
-	tmp = db;
-	len = ft_lstlen(tmp);
-	while (++x < len)
-	{
-		ft_putstr("Tet:#");
-		ft_putnbr(x);
-		ft_putchar('\n');
-		i = -1;
-		while (++i < 4)
-		{
-			ft_putstr("mino");
-			ft_putnbr(i);
-			ft_putchar(':');
-			ft_putnbr(tmp->crds[i][0]);
-			ft_putnbr(tmp->crds[i][1]);
-			ft_putchar('\n');
-		}
-	 	tmp = tmp->next;
-	}
 }

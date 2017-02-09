@@ -6,13 +6,13 @@
 /*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 15:06:36 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/06 15:08:11 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/08 18:09:49 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		 ft_didplctet(t_list *db, char **brd, int y, int x)
+int			ft_didplctet(t_list *db, char **brd, int y, int x)
 {
 	if (ft_canplctet(db, brd, y, x) == 1)
 	{
@@ -52,7 +52,7 @@ int			ft_chkspot(char **brd, int y, int x)
 
 void		ft_plctet(t_list *db, char **brd, int y, int x)
 {
-	int 	i;
+	int		i;
 	int		yc;
 	int		xc;
 	char	c;
