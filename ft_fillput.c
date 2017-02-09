@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fillput.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/08 17:49:22 by cfu               #+#    #+#             */
+/*   Updated: 2017/02/08 17:50:12 by cfu              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 //puterror.c
 
 #include "fillit.h"
 
-void ft_putboard(char **brd, int bwid)
+void		ft_putboard(char **brd, int bwid)
 {
 	int		i;
 
@@ -13,9 +25,3 @@ void ft_putboard(char **brd, int bwid)
 		i++;
 	}
 }
-
-
-/*int		error(void)
-{
-	ft_putstr()
-}*/

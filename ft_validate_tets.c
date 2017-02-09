@@ -6,16 +6,16 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/01 00:40:46 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/09 13:47:28 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_validate_tets(char *str)
+int			ft_validate_tets(char *str)
 {
-	int i;
-	char *tmp;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	tmp = ft_strdup(str);
@@ -30,10 +30,9 @@ int		ft_validate_tets(char *str)
 	return (-1);
 }
 
-
 void		ft_repchar(char *str, char o, char n, int max)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i <= max)
@@ -45,10 +44,10 @@ void		ft_repchar(char *str, char o, char n, int max)
 	ft_trim_tet(str, '#');
 }
 
-char	*ft_trim_tet(char *str, char c)
+char		*ft_trim_tet(char *str, char c)
 {
-	int 	src;
-	int 	dst;
+	int		src;
+	int		dst;
 	int		end;
 	size_t	len;
 

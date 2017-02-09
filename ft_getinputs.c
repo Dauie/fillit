@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_getinputs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/08 17:53:21 by cfu               #+#    #+#             */
+/*   Updated: 2017/02/08 18:54:56 by cfu              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 t_list			*ft_getinputs(int fd)
@@ -38,7 +50,7 @@ char			*ft_gettet(int fd, size_t *rbyt)
 t_list			*ft_list_em(t_list *db, int linum)
 {
 	static int	c;
-	int 		**crds;
+	int			**crds;
 	t_list		*crntnd;
 
 	crntnd = NULL;
@@ -56,7 +68,7 @@ t_list			*ft_list_em(t_list *db, int linum)
 	return (db);
 }
 
-void 			ft_initbline(char *bline, size_t len)
+void			ft_initbline(char *bline, size_t len)
 {
 	size_t		i;
 	char		*tmp;
@@ -73,32 +85,12 @@ int				**ft_getcoords(int linum)
 	int			**res;
 	int			**crds;
 
-
 	crds = ft_memalloc(sizeof(int *) * 4);
 	res = crds;
 	xy = -1;
 	while (++xy < 4)
 	{
 		*crds = ft_newipair(cy[linum][xy], cx[linum][xy]);
-		crds++;
-	}
-	return (res);
-}
-
-void	*ft_crddup(int **crds)
-{
-	int		i;
-	int		**res;
-	int		**tmp;
-
-	i = -1;
-	tmp = (int **)ft_memalloc(sizeof(int*) * ft_itbllen(crds));
-	res = tmp;
-	while (++i < 4)
-	{
-		*tmp = ft_memalloc(sizeof(int) * 2);
-		ft_memcpy(*tmp, *crds, sizeof(int) * 2);
-		tmp++;
 		crds++;
 	}
 	return (res);
