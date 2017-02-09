@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/09 13:47:28 by cfu              ###   ########.fr       */
+/*   Updated: 2017/02/09 14:16:33 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			ft_validate_tets(char *str)
 	ft_repchar(tmp, '\n', '.', BUFF_SIZE);
 	while (v_tets[i])
 	{
-		if (ft_strequ(tmp, v_tets[i]) == 1)
+		if (ft_strequ(tmp, g_vtets[i]) == 1)
 			return (i);
 		i++;
 	}

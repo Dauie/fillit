@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.us.org>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 17:53:21 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/08 18:54:56 by cfu              ###   ########.fr       */
+/*   Updated: 2017/02/09 14:16:13 by cfu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int				**ft_getcoords(int linum)
 	xy = -1;
 	while (++xy < 4)
 	{
-		*crds = ft_newipair(cy[linum][xy], cx[linum][xy]);
+		*crds = ft_newipair(g_cy[linum][xy], g_cx[linum][xy]);
 		crds++;
 	}
 	return (res);
