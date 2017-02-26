@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 21:56:33 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/08 18:38:46 by cfu              ###   ########.fr       */
+/*   Updated: 2017/02/26 14:07:44 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int			ft_solve(t_list *db, char **brd, int bwid)
 		{
 			if (ft_didplctet(db, brd, y, x))
 			{
-				if (db->next == NULL)
-					return (1);
-				if (ft_solve(db->next, brd, bwid))
+				if (db->next == NULL || ft_solve(db->next, brd, bwid))
 					return (1);
 				else
 					ft_unplace((char)db->content_size, brd, bwid);
@@ -77,6 +75,7 @@ int			*ft_max(t_list *db)
 		if (db->crds[i][1] > xmx)
 			xmx = db->crds[i][1];
 	}
-	res = ft_newipair(ymx, xmx);
+	if (!(res = ft_newipair(ymx, xmx)))
+		return (NULL);
 	return (res);
 }

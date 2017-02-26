@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/09 15:27:44 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/26 14:06:15 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			main(int ac, char **av)
 
 	fd = 0;
 	tamt = 0;
-	if (ac > 1)
+	if (ac > 1 && ac < 3)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (!(db = ft_getinputs(fd)))
@@ -28,6 +28,8 @@ int			main(int ac, char **av)
 		tamt = ft_lstlen(db);
 		ft_fillit(db, tamt);
 	}
+	else
+		return (error(2));
 	return (0);
 }
 
@@ -42,7 +44,8 @@ int			ft_fillit(t_list *db, int tamt)
 	if (!(brd = ft_makeboard(bwid)))
 		return (-1);
 	while ((ft_solve(db, brd, bwid)) == 0)
-		brd = ft_makeboard(++bwid);
+		if (!(brd = ft_makeboard(++bwid)))
+			return (error(1));
 	ft_putboard(brd, bwid);
 	return (0);
 }
@@ -54,11 +57,13 @@ char		**ft_makeboard(size_t size)
 	char		**tmp;
 
 	i = -1;
-	tmp = (char **)ft_memalloc(sizeof(char *) * size);
+	if (!(tmp = (char **)ft_memalloc(sizeof(char *) * size)))
+		return (NULL);
 	brd = tmp;
 	while (++i < size)
 	{
-		*tmp = (char *)ft_strnew(sizeof(char) * size);
+		if (!(*tmp = (char *)ft_strnew(sizeof(char) * size)))
+			return (NULL);
 		ft_initbline(*tmp, size);
 		tmp++;
 	}

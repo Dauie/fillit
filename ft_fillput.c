@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 17:49:22 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/09 15:52:31 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/26 14:09:37 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ void		ft_putboard(char **brd, int bwid)
 
 int			error(int code)
 {
-	ft_putendl_fd("Error", 2);
-	return (code);
+	if (code == 1)
+		ft_putendl("error");
+	else if (code == 2)
+		ft_putendl("usage: ./fillit target_file");
+	else if (code == 3)
+		ft_putendl("Blah");
+	return (-1);
 }

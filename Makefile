@@ -6,42 +6,32 @@
 #    By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 00:10:09 by cfu               #+#    #+#              #
-#    Updated: 2017/02/03 19:03:02 by rlutt            ###   ########.fr        #
+#    Updated: 2017/02/10 23:47:11 by cfu              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
-
-SRC = $(LIBFT)libft.a ft_didplctet.c ft_fillit.c ft_fillput.c ft_getinputs.c \
-	  ft_inxes.c ft_solve.c ft_validate_tets.c ft_lstcrdsnew.c
-
-OBJS = $(SRC: .c=.o)
-
 HEADER = fillit.h
 
-FLAGS = -Wall -Wextra -Werror -g
+NAME = fillit
 
-CC = gcc
+SRC = ft_didplctet.c ft_fillit.c ft_fillput.c ft_getinputs.c \
+	  ft_solve.c ft_validate_tets.c ft_lstcrdsnew.c
 
-LIBFT = libft/
-
-LIBRE = make -C $(LIBFT) re
-
-LIBC = make -C $(LIBFT) clean
-
-LIBF = make -C $(LIBFT) fclean
+OBJS = $(SRC:.c=.o)
 
 all : $(NAME)
 
 $(NAME):
-	$(LIBRE)
-	$(CC) $(FLAGS) $(SRC) -o $(NAME)
+	cd libft && make
+	gcc -Wall -Wextra -Werror -c $(SRC)
+	gcc -Wall -Wextra -Werror $(OBJS) -o $(NAME) -L libft -lft
 
 clean:
-	$(LIBC)
+	cd libft && make clean
+	/bin/rm -f $(OBJS)
 
 fclean: clean
-	$(LIBF)
+	cd libft && make fclean
 	/bin/rm -f $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 17:53:21 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/09 15:29:21 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/26 13:42:54 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,22 @@ t_list			*ft_getinputs(int fd)
 	t_list		*db;
 	t_list		*tmp;
 	char		*tet;
-	char		**ttmp;
 	int			linum;
 
-	db = ft_lstnew(NULL, 0);
+	if (!(db = ft_lstnew(NULL, 0)))
+		return (NULL);
 	tmp = db;
 	db->rbyt = 21;
-	ttmp = NULL;
 	while (db->rbyt == 21)
 	{
-		if (!(tet = ft_gettet(fd, &db->rbyt)))
-			return (NULL);
-		if ((linum = ft_validate_tets(tet)) != -1)
+		tet = ft_gettet(fd, &db->rbyt);
+		if ((linum = ft_validate_tets(tet)) != -1 && *tet)
 			db = ft_list_em(tmp, linum);
 		else
-			return (NULL);
-		ft_strclr(tet);
+			return ((db = NULL));
+		ft_strdel(&tet);
 	}
+	ft_strdel(&tet);
 	return (db);
 }
 
@@ -41,7 +40,8 @@ char			*ft_gettet(int fd, size_t *rbyt)
 {
 	char		*tet;
 
-	tet = ft_strnew(BUFF_SIZE);
+	if (!(tet = ft_strnew(BUFF_SIZE)))
+		return (NULL);
 	*rbyt = read(fd, tet, BUFF_SIZE);
 	return (tet);
 }
@@ -55,7 +55,8 @@ t_list			*ft_list_em(t_list *db, int linum)
 	crntnd = NULL;
 	if (!c)
 		c = 0;
-	crds = ft_getcoords(linum);
+	if (!(crds = ft_getcoords(linum)))
+		return (NULL);
 	crntnd = ft_lstcrdsnew(crds, ('A' + c++));
 	if (db->crds == NULL)
 	{
@@ -89,7 +90,8 @@ int				**ft_getcoords(int linum)
 	xy = -1;
 	while (++xy < 4)
 	{
-		*crds = ft_newipair(cy[linum][xy], cx[linum][xy]);
+		if (!(*crds = ft_newipair(g_cy[linum][xy], g_cx[linum][xy])))
+			return (NULL);
 		crds++;
 	}
 	return (res);
