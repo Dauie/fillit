@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_validate_hlp.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlutt <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: rlutt <rlutt@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 15:49:08 by rlutt             #+#    #+#             */
-/*   Updated: 2017/02/27 15:49:10 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/27 15:54:47 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "fillit.h"
 
 int			ft_checklines(char *str, char c)
 {
 	int		cnt;
-	char 	*tmp;
+	char	*tmp;
 
 	tmp = str;
 	cnt = -1;
@@ -35,14 +37,14 @@ int			chkline(char *line)
 		if (!(ft_iscool(line[i])))
 			return (0);
 	if (line[i] == '\n')
-		return(1);
+		return (1);
 	else
 		return (0);
 }
 
 int			ft_iscool(int c)
 {
-	if ( c == '.' || c == '#' || c == '\0')
+	if (c == '.' || c == '#' || c == '\0')
 		return (1);
 	else
 		return (0);
