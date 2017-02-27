@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/26 14:06:15 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/26 16:47:56 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			main(int ac, char **av)
 
 	fd = 0;
 	tamt = 0;
-	if (ac > 1 && ac < 3)
+	if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
 		if (!(db = ft_getinputs(fd)))

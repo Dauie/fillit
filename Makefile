@@ -6,7 +6,7 @@
 #    By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/01 00:10:09 by cfu               #+#    #+#              #
-#    Updated: 2017/02/10 23:47:11 by cfu              ###   ########.fr        #
+#    Updated: 2017/02/27 10:56:53 by rlutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,8 @@ all : $(NAME)
 
 $(NAME):
 	cd libft && make
-	gcc -Wall -Wextra -Werror -c $(SRC)
-	gcc -Wall -Wextra -Werror $(OBJS) -o $(NAME) -L libft -lft
+	gcc -g -Wall -Wextra -Werror -c $(SRC)
+	gcc -g -Wall -Wextra -Werror $(OBJS) -o $(NAME) -L libft -lft
 
 clean:
 	cd libft && make clean

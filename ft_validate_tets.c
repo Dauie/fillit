@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 17:45:30 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/22 22:58:30 by cfu              ###   ########.fr       */
+/*   Updated: 2017/02/27 15:48:55 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			ft_validate_tets(char *str)
 
 	i = 0;
 	tmp = ft_strdup(str);
-	if (ft_checklines(str, '\n') == 0)
+	if (ft_checklines(str, '\0') == 0)
 		return (-1);
 	if (ft_ifnotfound(str, '#') == 0)
 		return (-1);
@@ -73,33 +73,6 @@ char		*ft_trim_tet(char *str, char c, int src, int dst)
 	end++;
 	ft_memset(&str[end], '\0', len - end);
 	return (str);
-}
-
-int			ft_checklines(char *str, char c)
-{
-	int		i;
-	int		count;
-	int		chars;
-
-	i = 0;
-	count = 0;
-	if (str)
-	{
-		while (str[i])
-		{
-			chars = 0;
-			while (str[i++] != c)
-				chars++;
-			if (chars != 4 && str[i] != '\0')
-				return (0);
-			count++;
-		}
-	}
-	if (i > 21)
-		return (0);
-	if (count == 5 || count == 4)
-		return (1);
-	return (0);
 }
 
 size_t		ft_ifnotfound(char const *s, char c)
