@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:12:23 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/27 10:51:15 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/27 18:48:36 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,6 @@ size_t			ft_ifnotfound(char const *s, char c);
 int				error(int code);
 int				chkline(char *line);
 int				ft_iscool(int c);
+void			tet_lstdel(t_list *alst);
+void			delipair(int *pair);
 #endif

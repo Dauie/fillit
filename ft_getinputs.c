@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 17:53:21 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/26 13:42:54 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/27 18:43:56 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ t_list			*ft_list_em(t_list *db, int linum)
 		c = 0;
 	if (!(crds = ft_getcoords(linum)))
 		return (NULL);
-	crntnd = ft_lstcrdsnew(crds, ('A' + c++));
+	if (!(crntnd = ft_lstcrdsnew(crds, ('A' + c++))))
+		return (NULL);
 	if (db->crds == NULL)
 	{
 		db->crds = ft_crddup(crds);

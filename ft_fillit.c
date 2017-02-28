@@ -6,7 +6,7 @@
 /*   By: cfu <cfu@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/18 17:18:05 by cfu               #+#    #+#             */
-/*   Updated: 2017/02/26 16:47:56 by rlutt            ###   ########.fr       */
+/*   Updated: 2017/02/27 18:47:05 by rlutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,14 @@ int			ft_fillit(t_list *db, int tamt)
 	if (!(brd = ft_makeboard(bwid)))
 		return (-1);
 	while ((ft_solve(db, brd, bwid)) == 0)
+	{
+		ft_strdel(brd);
 		if (!(brd = ft_makeboard(++bwid)))
 			return (error(1));
+	}
 	ft_putboard(brd, bwid);
+	ft_strdel(brd);
+	tet_lstdel(db);
 	return (0);
 }
 
@@ -68,4 +73,26 @@ char		**ft_makeboard(size_t size)
 		tmp++;
 	}
 	return (brd);
+}
+
+void		tet_lstdel(t_list *alst)
+{
+	while ((alst)->next != NULL)
+	{
+		delipair(*alst->crds);
+		free(alst);
+		alst = alst->next;
+	}
+	if (alst->next == NULL)
+	{
+		delipair(*alst->crds);
+		free(alst);
+		alst = NULL;
+	}
+}
+
+void		delipair(int *pair)
+{
+	pair = NULL;
+	free(pair);
 }
